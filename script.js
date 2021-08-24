@@ -27,19 +27,23 @@ function convertToRoman(num) {
       // ? console.log("found", key);
 
       // If true, append $result with the key's value (letter)
-
       result += numerals[key];
-      // ? console.log("appeneded", numerals[key], "to result");
+      // ? console.log("appended", numerals[key], "to result");
 
       // and subtract the key (number) from $input
-
       input -= +key;
+
+      // ! then start again from the current key / check the current key again
+      // * use a FOR loop instead so we can control the value of $i and iterate through indexes of $keys
+      // * i.e. iterate through keys and increment/decrement $i when a key is found in $input
+      // * this way we can repeat the iteration for a key when it is found
     }
   });
 
+  // ! ISSUES:
   // ! Each key is checked only once.
-  // ! So, when 10 is found in 36 we are not checking for another 10
-  // ! instead, the next key (9) is checked for.
+  // ! ...When 10 is found in 36 we are not checking for 10 in 26
+  // ! ...Instead, the next key (9) is checked for.
 
   return result;
 }
