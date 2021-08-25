@@ -21,36 +21,23 @@ function convertToRoman(num) {
 
   // loop through $keys from highest to lowest,
   // checking whether $input is >= the current key
-  keys.map((key) => {
-    // ? console.log("checking", key);
-    if (input >= +key) {
-      // ? console.log("found", key);
-
+  for (let i = 0; i < keys.length; i++) {
+    const key = +keys[i];
+    if (input >= key) {
       // If true, append $result with the key's value (letter)
       result += numerals[key];
-      // ? console.log("appended", numerals[key], "to result");
-
-      // and subtract the key (number) from $input
-      input -= +key;
-
-      // ! then start again from the current key / check the current key again
-      // * use a FOR loop instead so we can control the value of $i and iterate through indexes of $keys
-      // * i.e. iterate through keys and increment/decrement $i when a key is found in $input
-      // * this way we can repeat the iteration for a key when it is found
+      // subtract the key (number) from $input
+      input -= key;
+      // decrement iterator so we can check for the current key again
+      i--;
     }
-  });
+    if (input < 1) break;
+  }
 
-  // ! ISSUES:
-  // ! Each key is checked only once.
-  // ! ...When 10 is found in 36 we are not checking for 10 in 26
-  // ! ...Instead, the next key (9) is checked for.
-
-  return result;
+  return result || 0;
 }
 
-// console.log(convertToRoman(1));
-// console.log(convertToRoman(10));
-// console.log(convertToRoman(11));
-// console.log(convertToRoman(15));
+console.log(convertToRoman(14));
+console.log(convertToRoman(29));
 console.log(convertToRoman(36));
-// console.log(convertToRoman(1001));
+console.log(convertToRoman(1001));
